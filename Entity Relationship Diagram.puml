@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+
+
+
+DocumentData <|-- DeathCertificate
+DocumentData <|-- ProofOfAddress
+FormData <|-- ClaimInitiationForm
+FormData <|-- EmployerStatementForm
+Claim *-- DocumentData
+Claim *-- FormData
+
+
+class Claim {
+- String type
+- String PIN
+- String status
+- FormData[] formData
+- DocumentData[] documentData
++ accept()
++ reject()
++ updateStatus()
+}
+
+interface FormData {
++ validateForm()
++ getFormData()
++ setFormData()
+}
+
+interface DocumentData{
++ validateDocument()
++ getDocumentData()
++ setDocumentData()
+}
+
+class DeathCertificate{
++ validateDocument()
++ getDocumentData()
++ setDocumentData()
+}
+
+class ProofOfAddress{
++ validateDocument()
++ getDocumentData()
++ setDocumentData()
+}
+
+class ClaimInitiationForm{
++ validateForm()
++ getFormData()
++ setFormData()
+}
+
+class EmployerStatementForm{
++ validateForm()
++ getFormData()
++ setFormData()
+}
+
+
+
+@enduml
