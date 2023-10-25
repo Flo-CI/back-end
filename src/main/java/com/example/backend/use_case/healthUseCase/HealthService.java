@@ -1,4 +1,4 @@
-package com.example.backend.healthUseCase;
+package com.example.backend.use_case.healthUseCase;
 
 import com.example.backend.responsemodel.CommonResponse;
 import org.springframework.stereotype.Service;
