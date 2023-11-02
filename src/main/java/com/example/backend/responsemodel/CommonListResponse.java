@@ -4,11 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class CommonResponse<T> {
+public class CommonListResponse<T> {
     private String message;
     private Integer status;
-    private T details;
+    private List<T> details;
+    private Integer dataCount;
 }

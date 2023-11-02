@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class CommonResponse<T> {
-    private String message;
-    private Integer status;
-    private T details;
+public class UserModel {
+    private String policyNumber;
+    private List<ClaimBaseModel> claims;
 }
