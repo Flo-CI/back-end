@@ -1,10 +1,8 @@
-package com.example.backend.healthUseCase;
+package com.example.backend.use_case.healthUseCase;
 
-import com.example.backend.responsemodel.CommonResponse;
+import com.example.backend.responsemodel.CommonListResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,13 +19,13 @@ public class HealthController {
     }
 
     @PostMapping("/demo/claim")
-    public CommonResponse createDemoClaim(@RequestParam(name = "policyNumber") String policyNumber) {
+    public CommonListResponse createDemoClaim(@RequestParam(name = "policyNumber") String policyNumber) {
         log.info(policyNumber);
         return healthService.createDemoClaim(policyNumber);
     }
 
     @GetMapping("/demo/claim")
-    public CommonResponse getDemoClaim(@RequestParam(name = "policyNumber") String policyNumber) {
+    public CommonListResponse getDemoClaim(@RequestParam(name = "policyNumber") String policyNumber) {
         return healthService.getDemoClaim(policyNumber);
     }
 }
