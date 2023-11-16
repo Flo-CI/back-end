@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,8 +33,16 @@ public class Claim {
     private Double amountInsured;
 
     @OneToMany
-    private List<Form> forms;
+    private List<Form> forms = new ArrayList<>();
 
     @OneToMany
-    private List<Document> documents;
+    private List<Document> documents = new ArrayList<>();
+
+    public void addDocument(Document document) {
+        documents.add(document);
+    }
+
+    public void addForm(Form form) {
+        forms.add(form);
+    }
 }
