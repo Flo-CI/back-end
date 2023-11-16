@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Inheritance
 @Getter
@@ -21,7 +23,7 @@ public abstract class Form {
     private String formType;
 
     private String formName;
+    private LocalDate lastModified;
 
-    @Lob
-    private byte[] file;
+    private String fileUrl;
 }

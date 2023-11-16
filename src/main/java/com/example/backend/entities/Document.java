@@ -6,11 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "document")
 public class Document {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.AUTO)
@@ -18,6 +21,9 @@ public class Document {
 
     private String documentType;
 
-    @Lob
-    private byte[] file;
+    private String documentName;
+
+    private LocalDate lastModified;
+
+    private String fileUrl;
 }
