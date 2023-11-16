@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
+    url: jdbc:mysql://ciflo.mysql.database.azure.com:3306/ciflow
+    username: CIFlowmysqlAdmin
+    password: TechnologyLeadershipInitiative@123
     show-sql: true
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
@@ -13,4 +13,3 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-
