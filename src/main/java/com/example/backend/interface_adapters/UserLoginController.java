@@ -1,8 +1,9 @@
-package com.example.backend.use_case.userLogin;
+package com.example.backend.interface_adapters;
 
 
 import com.example.backend.responsemodel.CommonResponse;
 import com.example.backend.responsemodel.UserModel;
+import com.example.backend.use_case.userLogin.UserLoginService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.Parameter;

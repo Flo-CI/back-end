@@ -1,7 +1,8 @@
-package com.example.backend.use_case.addBasicClaimInformation;
+package com.example.backend.interface_adapters;
 
 import com.example.backend.requestmodel.BasicClaimModel;
 import com.example.backend.responsemodel.CommonResponse;
+import com.example.backend.use_case.addBasicClaimInformation.BasicClaimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

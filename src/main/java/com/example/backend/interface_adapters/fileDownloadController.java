@@ -1,5 +1,6 @@
-package com.example.backend.use_case.fileDownload;
+package com.example.backend.interface_adapters;
 
+import com.example.backend.use_case.fileDownload.fileDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class fileDownloadController {
     @Autowired
-    private fileDownloadService fileDownloadService;
+    private com.example.backend.use_case.fileDownload.fileDownloadService fileDownloadService;
 
     @GetMapping("/download")
     public ResponseEntity<byte[]> downloadFile(String claimNumber, String type) {

@@ -1,6 +1,7 @@
-package com.example.backend.use_case.healthUseCase;
+package com.example.backend.interface_adapters;
 
 import com.example.backend.responsemodel.CommonListResponse;
+import com.example.backend.use_case.healthUseCase.HealthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
