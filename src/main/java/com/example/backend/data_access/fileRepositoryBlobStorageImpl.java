@@ -39,7 +39,7 @@ public class fileRepositoryBlobStorageImpl implements FileRepository {
     }
 
     private BlobContainerClient createBlobContainerClient() {
-        String azureStorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=ciflo;AccountKey=MJr93cD5hsF7u9gQCWVPftIAcg2O1sef+qaqFHXpk+FkiaZKWF/F6XWH0Hdk/9JhYgcejpPppBuG+ASt1WVYWA==;EndpointSuffix=core.windows.net";
+        String azureStorageConnectionString = "";
         BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
                 .connectionString(azureStorageConnectionString)
                 .buildClient();
