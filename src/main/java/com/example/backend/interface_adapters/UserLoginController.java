@@ -18,7 +18,7 @@ public class UserLoginController {
     private UserLoginService userLoginService;
 
     @GetMapping("user/login")
-    public CommonResponse<UserModel> userLogin(@RequestParam(value = "policyNumber") String policyNumber,
+    public CommonResponse<String> userLogin(@RequestParam(value = "policyNumber") String policyNumber,
                                                @RequestParam(value = "password") String password) {
 
         return userLoginService.userLogin(policyNumber, password);
