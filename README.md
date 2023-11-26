@@ -23,5 +23,6 @@ Flo-CI aims to automate the creditor insurance claims process at the user's end 
 2. Open a terminal and navigate to the root directory of this project
 3. Run `mvn clean install`
 4. Reload pom.xml in your IDE
-5. Run `mvn spring-boot:run` to start the server
-6. Server runs on port 8080
+5. Get application.yaml keys from the team
+6. Run `mvn spring-boot:run` to start the server
+7. Server runs on port 8080
