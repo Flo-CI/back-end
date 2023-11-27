@@ -20,7 +20,7 @@ public class UserLoginServiceImpl implements UserLoginService{
     @Autowired
     private UserRepository userRepository;
     @Override
-    public CommonResponse<UserModel> userLogin(String policyNumber, String password) {
+    public CommonResponse<String> userLogin(String policyNumber, String password) {
         if(policyNumber.isEmpty() || password.isEmpty()){
             throw new GenericException("enter policy number and password");
         }
@@ -32,9 +32,7 @@ public class UserLoginServiceImpl implements UserLoginService{
         if(!user.getPassword().equals(password)) {
             throw new GenericException("user not found");
         }
-        CommonResponse<UserModel> response = new CommonResponse<>();
-        UserModel userModel = convertToUserModel(user);
-        response.setDetails(userModel);
+        CommonResponse<String> response = new CommonResponse<>();
         response.setMessage("User Login Successful");
         response.setStatus(200);
         return response;
@@ -59,23 +57,4 @@ public class UserLoginServiceImpl implements UserLoginService{
         return response;
     }
 
-    private UserModel convertToUserModel(User user) {
-        UserModel userModel = new UserModel();
-        userModel.setPolicyNumber(user.getPolicyNumber());
-        List<ClaimBaseModel> claimBaseModels = new ArrayList<>();
-        for(Claim claim : user.getClaims()){
-            claimBaseModels.add(convertToClaimBaseModel(claim));
-        }
-        userModel.setClaims(claimBaseModels);
-        return userModel;
-    }
-
-    private ClaimBaseModel convertToClaimBaseModel(Claim claim){
-        ClaimBaseModel claimBaseModel = new ClaimBaseModel();
-        claimBaseModel.setClaimNumber(claim.getClaimNumber());
-        claimBaseModel.setStatus(claim.getStatus());
-        claimBaseModel.setType(claim.getType());
-        claimBaseModel.setDateCreated(claim.getDateCreated());
-        return claimBaseModel;
-    }
 }
