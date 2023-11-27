@@ -1,4 +1,4 @@
-package com.example.backend.use_case.addBasicClaimInformation;
+package com.example.backend.use_case.add_basic_claim_information;
 
 import com.example.backend.entities.User;
 import com.example.backend.entities.Claim;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
-public class BasicClaimServiceImpl implements BasicClaimService{
+public class BasicClaimServiceImpl implements BasicClaimService {
     @Autowired
     private ClaimRepository claimRepository;
 
@@ -25,7 +25,7 @@ public class BasicClaimServiceImpl implements BasicClaimService{
     public CommonResponse<String> addBasicClaimInformation(BasicClaimModel basicClaimModel) {
         CommonResponse<String> response = new CommonResponse<>();
         Optional<User> userOpt = userRepository.findByPolicyNumber(basicClaimModel.getPolicyNumber());
-        if(userOpt.isEmpty()){
+        if (userOpt.isEmpty()) {
             throw new GenericException("user not found");
         }
         User user = userOpt.get();

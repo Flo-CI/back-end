@@ -14,7 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @Repository
-public class fileRepositoryBlobStorageImpl implements FileRepository {
+public class FileRepositoryBlobStorageImpl implements FileRepository {
     @Override
     public byte[] downloadFileFromStorage(String fileName) {
         BlobContainerClient blobContainerClient = createBlobContainerClient();

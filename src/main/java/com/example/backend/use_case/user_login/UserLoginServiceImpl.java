@@ -1,4 +1,4 @@
-package com.example.backend.use_case.userLogin;
+package com.example.backend.use_case.user_login;
 
 import com.example.backend.entities.Claim;
 import com.example.backend.entities.User;
@@ -15,21 +15,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserLoginServiceImpl implements UserLoginService{
+public class UserLoginServiceImpl implements UserLoginService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public CommonResponse<String> userLogin(String policyNumber, String password) {
-        if(policyNumber.isEmpty() || password.isEmpty()){
+        if (policyNumber.isEmpty() || password.isEmpty()) {
             throw new GenericException("enter policy number and password");
         }
         Optional<User> userOpt = userRepository.findByPolicyNumber(policyNumber);
-        if(userOpt.isEmpty()){
+        if (userOpt.isEmpty()) {
             throw new GenericException("user not found");
         }
         User user = userOpt.get();
-        if(!user.getPassword().equals(password)) {
+        if (!user.getPassword().equals(password)) {
             throw new GenericException("user not found");
         }
         CommonResponse<String> response = new CommonResponse<>();
@@ -40,11 +41,11 @@ public class UserLoginServiceImpl implements UserLoginService{
 
     @Override
     public CommonResponse<String> createUser(String policyNumber, String password) {
-        if(policyNumber.isEmpty() || password.isEmpty()){
+        if (policyNumber.isEmpty() || password.isEmpty()) {
             throw new GenericException("enter policy number and password");
         }
         Optional<User> userOpt = userRepository.findByPolicyNumber(policyNumber);
-        if(userOpt.isPresent()){
+        if (userOpt.isPresent()) {
             throw new GenericException("user already exists");
         }
         User user = new User();

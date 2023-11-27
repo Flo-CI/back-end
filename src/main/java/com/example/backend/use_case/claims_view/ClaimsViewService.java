@@ -1,4 +1,4 @@
-package com.example.backend.use_case.claimsView;
+package com.example.backend.use_case.claims_view;
 
 import com.example.backend.responsemodel.ClaimBaseModel;
 import com.example.backend.responsemodel.CommonListResponse;
