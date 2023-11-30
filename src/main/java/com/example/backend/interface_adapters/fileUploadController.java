@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class fileUploadController {
     @Autowired
     private com.example.backend.use_case.fileUpload.fileUploadService fileUploadService;
