@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OcrForFormServiceImpl implements OcrFormService{
-    private static final String key = "";
-    private static final String endpoint = "";
+    private static final String key = "2dfd4119e95741f9a4c392cb4da0be58";
+    private static final String endpoint = "https://cifloocr.cognitiveservices.azure.com/";
     private static final String modelId = "prebuilt-document";
     private final FormValidator formValidator;
 
@@ -53,7 +53,10 @@ public class OcrForFormServiceImpl implements OcrFormService{
         HashMap<String, List<String>> formMap = new HashMap<>();
         for(DocumentKeyValuePair keyValuePair : keyValuePairs){
             String key = keyValuePair.getKey().getContent();
-            String value = keyValuePair.getValue().getContent();
+            String value = null;
+            if(keyValuePair.getValue()  != null){
+                value = keyValuePair.getValue().getContent();
+            }
             if(!formMap.containsKey(key)){
                 formMap.put(key, new ArrayList<>());
             }
