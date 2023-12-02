@@ -25,13 +25,13 @@ public class SubmitClaimServiceImpl implements SubmitClaimService {
         }
         // checking all forms and documents uploaded
         for (Form form : claim.getForms()) {
-            if (form.getFileUrl()!=null) {
-                throw new GenericException("Form " + form.getFormName() + " not uploaded");
+            if (form.getFileUrl()==null) {
+                throw new GenericException(form.getFormType() + " not uploaded");
             }
         }
         for (Document document : claim.getDocuments()) {
-            if (document.getFileUrl()!=null) {
-                throw new GenericException("Form " + document.getDocumentName() + " not uploaded");
+            if (document.getFileUrl()==null) {
+                throw new GenericException(document.getDocumentType() + " not uploaded");
             }
         }
         // if all forms and documents are uploaded, set claim status to submitted
