@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OcrForFormServiceImpl implements OcrFormService{
-    private static final String key = "2dfd4119e95741f9a4c392cb4da0be58";
-    private static final String endpoint = "https://cifloocr.cognitiveservices.azure.com/";
+    private static final String key = "key";
+    private static final String endpoint = "endpoint";
     private static final String modelId = "prebuilt-document";
     private final FormValidator formValidator;
 
