@@ -39,7 +39,7 @@ public class fileRepositoryBlobStorageImpl implements FileRepository {
     }
 
     private BlobContainerClient createBlobContainerClient() {
-        String azureStorageConnectionString = "";
+        String azureStorageConnectionString = "connectionString";
         BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
                 .connectionString(azureStorageConnectionString)
                 .buildClient();

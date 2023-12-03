@@ -24,7 +24,7 @@ public class CertificationOfDeathFormValidator implements FormValidator{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
             try{
                 form.setDateOfDeath(LocalDate.parse(formMap.get("Date of death (mo/day/yr)").get(0), formatter));
-            } catch (DateTimeParseException e){
+            } catch (Exception e){
                 log.info("Error in parsing date of death");
             }
             form.setImmediateCauseOfDeath(formMap.get("Immediate cause of death").get(0));
@@ -32,7 +32,7 @@ public class CertificationOfDeathFormValidator implements FormValidator{
             try{
                 form.setDateOfSymptomsOnset(LocalDate.parse(formMap.get("When did symptoms first appear or accident happen (mo/day/yr)").get(0), formatter));
 
-            } catch (DateTimeParseException e){
+            } catch (Exception e){
                 log.info("Error in parsing date of symptoms onset");
             }
             if(formMap.get("Natural").get(0).equals(":selected:")){
@@ -63,11 +63,11 @@ public class CertificationOfDeathFormValidator implements FormValidator{
             form.setPhoneOfPhysician(formMap.get("Telephone number").get(0));
             try{
                 form.setDateSigned(LocalDate.parse(formMap.get("Date (mo/day/yr)").get(0), formatter));
-            } catch (DateTimeParseException e){
+            } catch (Exception e){
                 log.info("Error in parsing date signed");
             }
         } catch (Exception e){
-            log.info("Error in parsing form: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
