@@ -5,8 +5,8 @@ import com.example.backend.entities.Document;
 import com.example.backend.entities.Form;
 import com.example.backend.repositories.ClaimRepository;
 import com.example.backend.repositories.UserRepository;
-import com.example.backend.responsemodel.CommonResponse;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.CommonResponse;
+import com.example.backend.response_model.GenericException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class SubmitClaimServiceImpl implements SubmitClaimService {
     @Autowired
     private ClaimRepository claimRepository;
+
     @Override
     public CommonResponse<String> submitClaim(String claimNumber) {
         CommonResponse<String> response = new CommonResponse<String>();
@@ -25,12 +26,12 @@ public class SubmitClaimServiceImpl implements SubmitClaimService {
         }
         // checking all forms and documents uploaded
         for (Form form : claim.getForms()) {
-            if (form.getFileUrl()==null) {
+            if (form.getFileUrl() == null) {
                 throw new GenericException(form.getFormType() + " not uploaded");
             }
         }
         for (Document document : claim.getDocuments()) {
-            if (document.getFileUrl()==null) {
+            if (document.getFileUrl() == null) {
                 throw new GenericException(document.getDocumentType() + " not uploaded");
             }
         }

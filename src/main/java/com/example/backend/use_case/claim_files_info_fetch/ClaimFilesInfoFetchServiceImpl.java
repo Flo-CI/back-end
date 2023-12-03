@@ -1,13 +1,13 @@
-package com.example.backend.use_case.claimFilesInfoFetch;
+package com.example.backend.use_case.claim_files_info_fetch;
 
 import com.example.backend.entities.Claim;
 import com.example.backend.entities.Document;
 import com.example.backend.entities.Form;
 import com.example.backend.entities.User;
 import com.example.backend.repositories.UserRepository;
-import com.example.backend.responsemodel.CommonListResponse;
-import com.example.backend.responsemodel.FileModel;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.CommonListResponse;
+import com.example.backend.response_model.FileModel;
+import com.example.backend.response_model.GenericException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +16,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class claimFilesInfoFetchServiceImpl implements claimFilesInfoFetchService {
+public class ClaimFilesInfoFetchServiceImpl implements ClaimFilesInfoFetchService {
 
     @Autowired
     UserRepository userRepository;
+
     @Override
     public CommonListResponse<FileModel> getClaimInfo(String claimNumber, String policyNumber) {
         CommonListResponse<FileModel> commonResponse = new CommonListResponse<>();
@@ -29,29 +30,29 @@ public class claimFilesInfoFetchServiceImpl implements claimFilesInfoFetchServic
         }
         User user = optUser.get();
         Claim desiredClaim = null;
-        for(Claim claim: user.getClaims()){
-            if(claim.getClaimNumber().equals(claimNumber)){
+        for (Claim claim : user.getClaims()) {
+            if (claim.getClaimNumber().equals(claimNumber)) {
                 desiredClaim = claim;
                 break;
             }
         }
-        if(desiredClaim == null){
+        if (desiredClaim == null) {
             throw new GenericException("Invalid claim number");
         }
         convertToFileModel(desiredClaim, commonResponse);
         return commonResponse;
     }
 
-    private void convertToFileModel(Claim claim, CommonListResponse<FileModel> response){
+    private void convertToFileModel(Claim claim, CommonListResponse<FileModel> response) {
         List<FileModel> files = new ArrayList<>();
-        for(Form form: claim.getForms()){
+        for (Form form : claim.getForms()) {
             FileModel fileModel = new FileModel();
             fileModel.setFileName(form.getFormName());
             fileModel.setFileType(form.getFormType());
             fileModel.setLastUpdated(form.getLastModified());
             files.add(fileModel);
         }
-        for(Document document: claim.getDocuments()) {
+        for (Document document : claim.getDocuments()) {
             FileModel fileModel = new FileModel();
             fileModel.setFileName(document.getDocumentName());
             fileModel.setFileType(document.getDocumentType());

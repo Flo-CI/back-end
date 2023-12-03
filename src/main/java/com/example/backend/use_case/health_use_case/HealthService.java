@@ -1,6 +1,6 @@
-package com.example.backend.use_case.healthUseCase;
+package com.example.backend.use_case.health_use_case;
 
-import com.example.backend.responsemodel.CommonListResponse;
+import com.example.backend.response_model.CommonListResponse;
 import org.springframework.stereotype.Service;
 
 @Service

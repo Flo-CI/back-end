@@ -1,4 +1,4 @@
-package com.example.backend.requestmodel;
+package com.example.backend.request_model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

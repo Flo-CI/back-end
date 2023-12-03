@@ -6,9 +6,9 @@ import com.example.backend.entities.Form;
 import com.example.backend.entities.LifeClaimInformationRequestForm;
 import com.example.backend.repositories.ClaimRepository;
 import com.example.backend.repositories.FormRepository;
-import com.example.backend.responsemodel.CommonListResponse;
-import com.example.backend.responsemodel.FormError;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.CommonListResponse;
+import com.example.backend.response_model.FormError;
+import com.example.backend.response_model.GenericException;
 import com.example.backend.use_case.validate_form.form_validator.CertificationOfDeathFormValidator;
 import com.example.backend.use_case.validate_form.form_validator.FormValidator;
 import com.example.backend.use_case.validate_form.ocr_service.OcrForFormServiceImpl;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ValidateFormServiceImpl implements ValidateFormService{
+public class ValidateFormServiceImpl implements ValidateFormService {
 
     @Autowired
     private ClaimRepository claimRepository;
@@ -47,7 +47,8 @@ public class ValidateFormServiceImpl implements ValidateFormService{
             throw new GenericException("Form not found");
         }
         if (type.equals("Certification of Death Form")) {
-            Optional<CertificationOfDeathForm> desiredFormOpt = certificationOfDeathFormRepository.findById(desiredFormId);
+            Optional<CertificationOfDeathForm> desiredFormOpt = certificationOfDeathFormRepository
+                    .findById(desiredFormId);
             if (desiredFormOpt.isEmpty()) {
                 throw new GenericException("Form not found");
             }

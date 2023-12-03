@@ -1,16 +1,17 @@
-package com.example.backend.use_case.claimsView;
+package com.example.backend.use_case.claims_view;
 
 import com.example.backend.entities.Claim;
 import com.example.backend.entities.User;
 import com.example.backend.repositories.DemoClaimRepository;
 import com.example.backend.repositories.UserRepository;
-import com.example.backend.responsemodel.*;
+import com.example.backend.response_model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ClaimsViewServiceImpl implements ClaimsViewService {
 
@@ -20,7 +21,7 @@ public class ClaimsViewServiceImpl implements ClaimsViewService {
     @Override
     public CommonListResponse<ClaimBaseModel> getClaims(String policyNumber) {
         Optional<User> userOpt = userRepository.findByPolicyNumber(policyNumber);
-        if(userOpt.isEmpty()){
+        if (userOpt.isEmpty()) {
             throw new GenericException("user not found");
         }
         User user = userOpt.get();
@@ -39,7 +40,7 @@ public class ClaimsViewServiceImpl implements ClaimsViewService {
         return response;
     }
 
-    private ClaimBaseModel convertToClaimBaseModel(Claim claim){
+    private ClaimBaseModel convertToClaimBaseModel(Claim claim) {
         ClaimBaseModel claimBaseModel = new ClaimBaseModel();
         claimBaseModel.setClaimNumber(claim.getClaimNumber());
         claimBaseModel.setStatus(claim.getStatus());
