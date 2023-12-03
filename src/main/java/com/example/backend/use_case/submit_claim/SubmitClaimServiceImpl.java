@@ -34,7 +34,7 @@ public class SubmitClaimServiceImpl implements SubmitClaimService {
                 throw new GenericException(document.getDocumentType() + " not uploaded");
             }
         }
-        // if all forms and documents are uploaded, set claim status to submitted
+        // if all forms and documents are uploaded, set claim status to under review
         claim.setStatus("Under Review");
         claimRepository.save(claim);
         response.setStatus(200);
