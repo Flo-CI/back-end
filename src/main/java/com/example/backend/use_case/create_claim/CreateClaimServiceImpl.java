@@ -3,16 +3,15 @@ package com.example.backend.use_case.create_claim;
 import com.example.backend.entities.Claim;
 import com.example.backend.entities.User;
 import com.example.backend.repositories.UserRepository;
-import com.example.backend.responsemodel.CommonResponse;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.CommonResponse;
+import com.example.backend.response_model.GenericException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.Optional;
 
 @Service
-public class CreateClaimServiceImpl implements CreateClaimService{
+public class CreateClaimServiceImpl implements CreateClaimService {
 
     @Autowired
     ClaimFactory claimFactory;

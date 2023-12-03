@@ -1,7 +1,6 @@
 package com.example.backend.interface_adapters;
 
-
-import com.example.backend.responsemodel.CommonResponse;
+import com.example.backend.response_model.CommonResponse;
 import com.example.backend.use_case.create_claim.CreateClaimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
