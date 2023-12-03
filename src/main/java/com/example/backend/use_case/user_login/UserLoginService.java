@@ -1,7 +1,7 @@
-package com.example.backend.use_case.userLogin;
+package com.example.backend.use_case.user_login;
 
-import com.example.backend.responsemodel.CommonResponse;
-import com.example.backend.responsemodel.UserModel;
+import com.example.backend.response_model.CommonResponse;
+import com.example.backend.response_model.UserModel;
 import org.springframework.stereotype.Service;
 
 @Service

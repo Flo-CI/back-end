@@ -1,21 +1,20 @@
-package com.example.backend.use_case.fileDownload;
+package com.example.backend.use_case.file_download;
 
 import com.example.backend.entities.Claim;
 import com.example.backend.entities.Document;
 import com.example.backend.entities.Form;
 import com.example.backend.repositories.ClaimRepository;
 import com.example.backend.repositories.FileRepository;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.GenericException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @Slf4j
-public class fileDownloadServiceImpl implements fileDownloadService{
+public class FileDownloadServiceImpl implements FileDownloadService {
     @Autowired
     private FileRepository fileRepository;
 
@@ -27,14 +26,14 @@ public class fileDownloadServiceImpl implements fileDownloadService{
         Claim claim = claimRepository.findByClaimNumber(claimNumber);
         Form form = null;
         Document document = null;
-        for(Form f: claim.getForms()){
-            if(f.getFormType().equals(type)){
+        for (Form f : claim.getForms()) {
+            if (f.getFormType().equals(type)) {
                 form = f;
                 break;
             }
         }
-        for (Document d: claim.getDocuments()){
-            if(d.getDocumentType().equals(type)){
+        for (Document d : claim.getDocuments()) {
+            if (d.getDocumentType().equals(type)) {
                 document = d;
                 break;
             }

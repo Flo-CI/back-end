@@ -1,4 +1,4 @@
-package com.example.backend.responsemodel;
+package com.example.backend.response_model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

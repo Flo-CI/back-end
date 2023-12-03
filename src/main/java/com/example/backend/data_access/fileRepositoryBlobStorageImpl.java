@@ -7,14 +7,14 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.specialized.BlobInputStream;
 import com.azure.storage.blob.specialized.BlockBlobClient;
 import com.example.backend.repositories.FileRepository;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.GenericException;
 import org.springframework.stereotype.Repository;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @Repository
-public class fileRepositoryBlobStorageImpl implements FileRepository {
+public class FileRepositoryBlobStorageImpl implements FileRepository {
     @Override
     public byte[] downloadFileFromStorage(String fileName) {
         BlobContainerClient blobContainerClient = createBlobContainerClient();

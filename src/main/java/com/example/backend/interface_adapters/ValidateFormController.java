@@ -1,7 +1,7 @@
 package com.example.backend.interface_adapters;
 
-import com.example.backend.responsemodel.CommonListResponse;
-import com.example.backend.responsemodel.FormError;
+import com.example.backend.response_model.CommonListResponse;
+import com.example.backend.response_model.FormError;
 import com.example.backend.use_case.validate_form.ValidateFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +17,7 @@ public class ValidateFormController {
 
     @PostMapping("/validate")
     public CommonListResponse<FormError> validateForm(@RequestParam(name = "claimNumber") String claimNumber,
-                                                      @RequestParam(name = "type") String type) {
+            @RequestParam(name = "type") String type) {
         return validateFormService.validateForm(claimNumber, type);
     }
 }
