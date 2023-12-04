@@ -36,10 +36,6 @@ public class ClaimRankServiceImpl implements ClaimRankService {
         List<ClaimBaseModel> allClaims = getAllClaims();
         Collections.sort(allClaims, new ClaimRankComparator());
 
-        for (ClaimBaseModel claim : allClaims) {
-            System.out.println(claim.getClaimNumber() + ": " + claim.getDateCreated());
-        }
-
         // Get user's claim numbers
         Set<String> userClaimNumbers = getUserClaimNumbers(policyNumber);
 
@@ -55,7 +51,7 @@ public class ClaimRankServiceImpl implements ClaimRankService {
         return res;
     }
 
-    private HashMap<String, Integer> computeRanks(Set<String> userClaimNumbers, List<ClaimBaseModel> allClaims) {
+    public HashMap<String, Integer> computeRanks(Set<String> userClaimNumbers, List<ClaimBaseModel> allClaims) {
         HashMap<String, Integer> rankMap = new HashMap<String, Integer>();
 
         // Loop through whole list of claims and check against user's claim numbers
@@ -93,7 +89,6 @@ public class ClaimRankServiceImpl implements ClaimRankService {
             claims.add(claim.getClaimNumber());
         }
 
-        System.out.println("user" + claims);
         return claims;
     }
 }
