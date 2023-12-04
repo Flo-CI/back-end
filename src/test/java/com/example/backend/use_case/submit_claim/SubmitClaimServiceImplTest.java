@@ -2,8 +2,8 @@ package com.example.backend.use_case.submit_claim;
 
 import com.example.backend.entities.Claim;
 import com.example.backend.repositories.ClaimRepository;
-import com.example.backend.responsemodel.CommonResponse;
-import com.example.backend.responsemodel.GenericException;
+import com.example.backend.response_model.CommonResponse;
+import com.example.backend.response_model.GenericException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
