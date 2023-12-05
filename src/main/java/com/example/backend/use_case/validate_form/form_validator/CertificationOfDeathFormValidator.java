@@ -25,8 +25,11 @@ public class CertificationOfDeathFormValidator implements FormValidator {
             form.setNameDeceased(formMap.get("Full name of deceased").get(0));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
             try {
-                form.setDateOfDeath(LocalDate.parse(formMap.get("Date of death (mo/day/yr)").get(0), formatter));
+                LocalDate d = LocalDate.parse(formMap.get("Date of death (mo/day/yr)").get(0), formatter);
+                form.setDateOfDeath(d);
+
             } catch (Exception e) {
+                form.setDateOfDeath(null);
                 log.info("Error in parsing date of death");
             }
             form.setImmediateCauseOfDeath(formMap.get("Immediate cause of death").get(0));
@@ -37,6 +40,7 @@ public class CertificationOfDeathFormValidator implements FormValidator {
                         formatter));
 
             } catch (Exception e) {
+                form.setDateOfSymptomsOnset(null);
                 log.info("Error in parsing date of symptoms onset");
             }
             if (formMap.get("Natural").get(0).equals(":selected:")) {
@@ -49,6 +53,8 @@ public class CertificationOfDeathFormValidator implements FormValidator {
                 form.setCauseOfDeath("Homicide");
             } else if (formMap.get("Undetermined").get(0).equals(":selected:")) {
                 form.setCauseOfDeath("Undetermined");
+            } else {
+                form.setCauseOfDeath(null);
             }
             form.setPlaceOfDeath(formMap.get("Place of death (if institution or hospital, give name)").get(0));
             if (formMap.get("Yes").get(0).equals(":selected:")) {
@@ -60,6 +66,8 @@ public class CertificationOfDeathFormValidator implements FormValidator {
                 form.setAutopsyPerformed(Boolean.TRUE);
             } else if (formMap.get("No").get(1).equals(":selected:")) {
                 form.setAutopsyPerformed(Boolean.FALSE);
+            } else {
+                form.setAutopsyPerformed(null);
             }
             form.setNameOfPhysician(formMap.get("Name").get(0));
             form.setTitleOfPhysician(formMap.get("Title").get(0));
@@ -68,6 +76,7 @@ public class CertificationOfDeathFormValidator implements FormValidator {
             try {
                 form.setDateSigned(LocalDate.parse(formMap.get("Date (mo/day/yr)").get(0), formatter));
             } catch (Exception e) {
+                form.setDateSigned(null);
                 log.info("Error in parsing date signed");
             }
         } catch (Exception e) {
@@ -82,7 +91,7 @@ public class CertificationOfDeathFormValidator implements FormValidator {
 
     private List<FormError> getFormErrors() {
         List<FormError> errors = new ArrayList<>();
-        log.info("" + errors.size());
+        log.info(String.valueOf(form.getDateOfDeath()));
         if (form.getNameDeceased() == null) {
             FormError error = new FormError("Full name of deceased", "Name of deceased cannot be null");
             errors.add(error);
@@ -92,7 +101,7 @@ public class CertificationOfDeathFormValidator implements FormValidator {
                     "Date of death is either empty or in wrong format");
             errors.add(error);
         }
-        if (form.getDateOfDeath().isAfter(LocalDate.now())) {
+        if (form.getDateOfDeath() != null && form.getDateOfDeath().isAfter(LocalDate.now())) {
             FormError error = new FormError("Date of death (mo/day/yr)", "Date of death cannot be in the future");
             errors.add(error);
         }
@@ -109,7 +118,7 @@ public class CertificationOfDeathFormValidator implements FormValidator {
                     "Date of symptoms onset is either empty or in wrong format");
             errors.add(error);
         }
-        if (form.getDateOfSymptomsOnset().isAfter(LocalDate.now())) {
+        if (form.getDateOfSymptomsOnset() != null && form.getDateOfSymptomsOnset().isAfter(LocalDate.now())) {
             FormError error = new FormError("When did symptoms first appear or accident happen (mo/day/yr)",
                     "Date of symptoms onset cannot be in the future. Please check date format.");
             errors.add(error);
@@ -155,7 +164,7 @@ public class CertificationOfDeathFormValidator implements FormValidator {
             FormError error = new FormError("Date (mo/day/yr)", "Date signed cannot be null");
             errors.add(error);
         }
-        if (form.getDateSigned().isAfter(LocalDate.now())) {
+        if (form.getDateSigned() != null && form.getDateSigned().isAfter(LocalDate.now())) {
             FormError error = new FormError("Date (mo/day/yr)", "Date signed cannot be in the future");
             errors.add(error);
         }
