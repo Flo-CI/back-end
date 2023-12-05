@@ -36,10 +36,6 @@ public class ClaimRankServiceImpl implements ClaimRankService {
         List<ClaimBaseModel> allClaims = getAllRelevantClaims();
         Collections.sort(allClaims, new ClaimRankComparator());
 
-        for (ClaimBaseModel claim : allClaims) {
-            System.out.println(claim.getClaimNumber() + " " + claim.getStatus());
-        }
-
         // Get user's claim numbers
         Set<String> userClaimNumbers = getUserClaimNumbers(policyNumber);
 
