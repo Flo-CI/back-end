@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 class ClaimRankServiceImplTest {
 
@@ -25,9 +25,6 @@ class ClaimRankServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
-
-    @Mock
-    private ClaimRankComparator claimRankComparator;
 
     @InjectMocks
     private ClaimRankServiceImpl claimRankService;
@@ -41,83 +38,65 @@ class ClaimRankServiceImplTest {
     void testGetClaimRanks() {
         // Mock data
         String policyNumber = "123";
-        ClaimBaseModel claim1 = new ClaimBaseModel();
-        claim1.setClaimNumber("claim1");
-        claim1.setStatus("Pending");
-        claim1.setType("TypeA");
+        Claim claim1 = new Claim();
+        claim1.setClaimNumber("C001");
+        claim1.setStatus("Under Review");
         claim1.setDateCreated(LocalDate.now());
 
-        ClaimBaseModel claim2 = new ClaimBaseModel();
-        claim2.setClaimNumber("claim2");
-        claim2.setStatus("Approved");
-        claim2.setType("TypeB");
+        Claim claim2 = new Claim();
+        claim2.setClaimNumber("C002");
+        claim2.setStatus("Under Review");
         claim2.setDateCreated(LocalDate.now());
 
-        List<ClaimBaseModel> allClaims = Arrays.asList(claim1, claim2);
+        Claim claim3 = new Claim();
+        claim3.setClaimNumber("C003");
+        claim3.setStatus("Approved");
+        claim3.setDateCreated(LocalDate.now());
+
         User user = new User();
-        Claim userClaim1 = new Claim();
-        userClaim1.setClaimNumber("claim1");
-        userClaim1.setDateCreated(LocalDate.now());
-        user.setClaims(Collections.singletonList(userClaim1));
+        user.setClaims(Arrays.asList(new Claim(1L, "C001", "Under Review", policyNumber, null, null, null, null),
+                new Claim(2L, "C002", "Under Review", policyNumber, null, null, null, null)));
 
         // Mock repository responses
-        when(claimRepository.findAll()).thenReturn(Arrays.asList(
-                new Claim(Long.valueOf(0), "claim1", "Pending", "TypeA", LocalDate.now(), 14.0, new ArrayList<>(),
-                        new ArrayList<>()),
-                new Claim(Long.valueOf(1), "claim2", "Pending", "TypeB", LocalDate.now(), 14.0, new ArrayList<>(),
-                        new ArrayList<>())));
+        when(claimRepository.findAll()).thenReturn(Arrays.asList(claim1, claim2, claim3));
         when(userRepository.findByPolicyNumber(policyNumber)).thenReturn(Optional.of(user));
 
-        // Mock sorting behavior
-        when(claimRankComparator.compare(any(), any())).thenCallRealMethod();
-
-        // Invoke the method
+        // Invoke the service method
         CommonResponse<HashMap<String, Integer>> result = claimRankService.getClaimRanks(policyNumber);
 
         // Verify the result
         assertEquals(200, result.getStatus());
         assertEquals("Claim ranks fetched", result.getMessage());
-
-        // Verify that the getAllClaims method is called
-        verify(claimRepository, times(1)).findAll();
-
-        // Verify that the findByPolicyNumber method is called
-        verify(userRepository, times(1)).findByPolicyNumber(policyNumber);
-
+        HashMap<String, Integer> details = result.getDetails();
+        assertEquals(2, details.size());
+        assertEquals(1, details.get("C001"));
+        assertEquals(2, details.get("C002"));
     }
 
     @Test
     void testComputeRanks() {
         // Mock data
-        Set<String> userClaimNumbers = new HashSet<>(Arrays.asList("claim1", "claim2", "claim3"));
+        Set<String> userClaimNumbers = new HashSet<>(Arrays.asList("C001", "C003"));
+        ClaimBaseModel cb1 = new ClaimBaseModel();
+        cb1.setClaimNumber("C001");
+        cb1.setStatus("Under Review");
 
-        ClaimBaseModel claim1 = new ClaimBaseModel();
-        claim1.setClaimNumber("claim1");
-        claim1.setStatus("Pending");
-        claim1.setType("TypeA");
-        claim1.setDateCreated(LocalDate.now());
+        ClaimBaseModel cb2 = new ClaimBaseModel();
+        cb2.setClaimNumber("C002");
+        cb2.setStatus("Under Review");
 
-        ClaimBaseModel claim2 = new ClaimBaseModel();
-        claim2.setClaimNumber("claim2");
-        claim2.setStatus("Approved");
-        claim2.setType("TypeB");
-        claim2.setDateCreated(LocalDate.now());
+        ClaimBaseModel cb3 = new ClaimBaseModel();
+        cb3.setClaimNumber("C003");
+        cb3.setStatus("Approved");
 
-        ClaimBaseModel claim3 = new ClaimBaseModel();
-        claim3.setClaimNumber("claim3");
-        claim3.setStatus("Rejected");
-        claim3.setType("TypeC");
-        claim3.setDateCreated(LocalDate.now());
+        List<ClaimBaseModel> allClaims = Arrays.asList(cb1, cb2, cb3);
 
-        List<ClaimBaseModel> allClaims = Arrays.asList(claim1, claim2, claim3);
-
-        // Invoke the method
+        // Invoke the computeRanks method
         HashMap<String, Integer> result = claimRankService.computeRanks(userClaimNumbers, allClaims);
 
         // Verify the result
-        assertEquals(3, result.size());
-        assertEquals(1, result.get("claim1"));
-        assertEquals(2, result.get("claim2"));
-        assertEquals(3, result.get("claim3"));
+        assertEquals(2, result.size());
+        assertEquals(1, result.get("C001"));
+        assertEquals(3, result.get("C003"));
     }
 }

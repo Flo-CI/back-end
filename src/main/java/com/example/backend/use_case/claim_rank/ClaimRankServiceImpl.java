@@ -33,8 +33,12 @@ public class ClaimRankServiceImpl implements ClaimRankService {
         CommonResponse<HashMap<String, Integer>> res = new CommonResponse<HashMap<String, Integer>>();
 
         // Get all claims and sort them by date
-        List<ClaimBaseModel> allClaims = getAllClaims();
+        List<ClaimBaseModel> allClaims = getAllRelevantClaims();
         Collections.sort(allClaims, new ClaimRankComparator());
+
+        for (ClaimBaseModel claim : allClaims) {
+            System.out.println(claim.getClaimNumber() + " " + claim.getStatus());
+        }
 
         // Get user's claim numbers
         Set<String> userClaimNumbers = getUserClaimNumbers(policyNumber);
@@ -66,12 +70,15 @@ public class ClaimRankServiceImpl implements ClaimRankService {
         return rankMap;
     }
 
-    private List<ClaimBaseModel> getAllClaims() {
+    private List<ClaimBaseModel> getAllRelevantClaims() {
         List<ClaimBaseModel> claims = new ArrayList<>();
 
         for (Claim claim : claimRepository.findAll()) {
             ClaimBaseModel claimBaseModel = Utils.convertToClaimBaseModel(claim);
-            claims.add(claimBaseModel);
+            // Only gets claims that are "Under Review"
+            if (claimBaseModel.getStatus().equals("Under Review"))
+                claims.add(claimBaseModel);
+
         }
 
         return claims;
@@ -86,7 +93,9 @@ public class ClaimRankServiceImpl implements ClaimRankService {
 
         Set<String> claims = new HashSet<String>();
         for (Claim claim : user.getClaims()) {
-            claims.add(claim.getClaimNumber());
+            // Only gets claims that are "Under Review"
+            if (claim.getStatus().equals("Under Review"))
+                claims.add(claim.getClaimNumber());
         }
 
         return claims;
