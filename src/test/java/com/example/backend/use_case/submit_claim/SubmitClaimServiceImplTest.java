@@ -46,8 +46,7 @@ class SubmitClaimServiceImplTest {
         verify(claimRepository, times(1)).save(claim);
         assertAll(
                 () -> assertEquals(200, response.getStatus()),
-                () -> assertEquals("Claim submitted successfully", response.getMessage())
-        );
+                () -> assertEquals("Claim submitted successfully", response.getMessage()));
     }
 
     @Test
