@@ -28,7 +28,7 @@ class SubmitClaimServiceImplTest {
     }
 
     @Test
-    void testSubmitClaim_Success() {
+    void testSubmitClaimSuccess() {
         // Mock data
         String claimNumber = "123";
         Claim claim = new Claim();
@@ -50,7 +50,7 @@ class SubmitClaimServiceImplTest {
     }
 
     @Test
-    void testSubmitClaim_ClaimNotFound() {
+    void testSubmitClaimClaimNotFound() {
         // Mock data
         String claimNumber = "456";
 

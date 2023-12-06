@@ -25,17 +25,11 @@ public class HealthServiceImpl implements HealthService {
 
     @Override
     public CommonListResponse getDemoClaim(String policyNumber) {
-        try {
-            CommonListResponse response = new CommonListResponse();
-            response.setDetails(demoClaimRepository.findByPolicyNumber(policyNumber));
-            response.setMessage("Demo Claim Found");
-            response.setStatus(200);
-            return response;
-        } catch (Exception e) {
-            CommonListResponse response = new CommonListResponse();
-            response.setMessage("Demo Claim Not Found");
-            response.setStatus(404);
-            return response;
-        }
+
+        CommonListResponse response = new CommonListResponse();
+        response.setDetails(demoClaimRepository.findByPolicyNumber(policyNumber));
+        response.setMessage("Demo Claim Found");
+        response.setStatus(200);
+        return response;
     }
 }
