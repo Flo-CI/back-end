@@ -36,7 +36,7 @@ class FileDownloadServiceImplTest {
     }
 
     @Test
-    void testDownloadFile_Form_Success() {
+    void testDownloadFileFormSuccess() {
         // Mock data
         String claimNumber = "C123";
         String type = "Loss of Life Claim";
@@ -66,7 +66,7 @@ class FileDownloadServiceImplTest {
     }
 
     @Test
-    void testDownloadFile_Document_Success() {
+    void testDownloadFileDocumentSuccess() {
         // Mock data
         String claimNumber = "123";
         String type = "Death Certificate";
@@ -96,7 +96,7 @@ class FileDownloadServiceImplTest {
     }
 
     @Test
-    void testDownloadFile_FileNotFound() {
+    void testDownloadFileFileNotFound() {
         // Mock data
         String claimNumber = "C456";
         String type = "Certification of Death Form";

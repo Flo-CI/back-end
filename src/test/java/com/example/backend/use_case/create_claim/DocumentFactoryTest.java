@@ -26,7 +26,7 @@ class DocumentFactoryTest {
     }
 
     @Test
-    void testCreateDocument_Success() {
+    void testCreateDocumentSuccess() {
         // Mock data
         String documentType = "Invoice";
 

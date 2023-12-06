@@ -34,7 +34,7 @@ class CreateClaimServiceImplTest {
     }
 
     @Test
-    void testCreateClaim_Success() {
+    void testCreateClaimSuccess() {
         // Mock data
         String policyNumber = "123";
         String type = "Loss of Life Claim";
@@ -82,7 +82,7 @@ class CreateClaimServiceImplTest {
     }
 
     @Test
-    void testCreateClaim_InvalidClaimType() {
+    void testCreateClaimInvalidClaimType() {
         // Mock data
         String policyNumber = "789";
         String type = "Invalid Claim Type";

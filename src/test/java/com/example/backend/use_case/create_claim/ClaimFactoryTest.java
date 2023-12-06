@@ -33,7 +33,7 @@ class ClaimFactoryTest {
     }
 
     @Test
-    void testCreateLossOfLifeClaim_Success() {
+    void testCreateLossOfLifeClaimSuccess() {
         // Mock data
         String policyNumber = "123";
 

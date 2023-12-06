@@ -29,7 +29,7 @@ class HealthServiceImplTest {
     }
 
     @Test
-    void testCreateDemoClaim_Success() {
+    void testCreateDemoClaimSuccess() {
         // Mock data
         String policyNumber = "123";
 
@@ -47,7 +47,7 @@ class HealthServiceImplTest {
     }
 
     @Test
-    void testGetDemoClaim_Success() {
+    void testGetDemoClaimSuccess() {
         // Mock data
         String policyNumber = "123";
         ArrayList<DemoClaim> demoClaims = new ArrayList<>();

@@ -35,7 +35,7 @@ class ClaimsViewServiceImplTest {
     }
 
     @Test
-    void testGetClaims_Success() {
+    void testGetClaimsSuccess() {
         // Mock data
         String policyNumber = "123";
         User user = new User();
@@ -80,7 +80,7 @@ class ClaimsViewServiceImplTest {
     }
 
     @Test
-    void testGetClaims_UserNotFound() {
+    void testGetClaimsUserNotFound() {
         // Mock data
         String policyNumber = "789";
 
