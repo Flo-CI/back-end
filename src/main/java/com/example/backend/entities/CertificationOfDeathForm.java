@@ -1,21 +1,19 @@
 package com.example.backend.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CertificationOfDeathForm extends Form{
+public class CertificationOfDeathForm extends Form {
    private String nameDeceased;
    private LocalDate dateOfDeath;
    private String immediateCauseOfDeath;
