@@ -16,3 +16,4 @@ public class GenericException extends RuntimeException {
         this.message = message;
     }
 }
+
